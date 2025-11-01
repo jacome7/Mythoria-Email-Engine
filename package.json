@@ -1,0 +1,25 @@
+{
+  "name": "mythoria-email-engine",
+  "version": "1.0.0",
+  "description": "Automated email triage engine for Mythoria using Google Apps Script",
+  "scripts": {
+    "login": "clasp login",
+    "create": "clasp create --type standalone --title 'Mythoria Email Engine'",
+    "push": "clasp push",
+    "deploy": "clasp deploy",
+    "open": "clasp open",
+    "logs": "clasp logs"
+  },
+  "keywords": [
+    "google-apps-script",
+    "email-automation",
+    "openai",
+    "triage"
+  ],
+  "author": "Mythoria",
+  "license": "MIT",
+  "devDependencies": {
+    "@google/clasp": "^2.4.2",
+    "@types/google-apps-script": "^1.0.83"
+  }
+}

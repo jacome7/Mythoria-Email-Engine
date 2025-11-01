@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Clasp credentials
+.clasprc.json
+
+# Environment variables
+.env
+
+# Build artifacts
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+tmp/
+temp/
