@@ -226,24 +226,30 @@ All LLM calls return **strict JSON** (no prose) that conforms to a small **schem
 
 > Each phase is small and shippable. Stop after any phase and you still have value.
 
-### Phase 1 — Bootstrap (Sheet + GAS + KB)
+### Phase 1 — Bootstrap (Sheet + GAS + KB) ✅ COMPLETE
 
 * Create Sheet tabs (`Config`, `Runs_Log`, `Messages_Log`, `Bounces`, `Tickets`, `Errors`).
 * Add labels in Gmail.
 * Add **`kb.json`** to Script project (or Drive).
 * Bind Apps Script; set Script Properties (API endpoints/keys).
 
-**Exit criteria:** Script can read Config, load KB JSON, and write to logs.
+**Exit criteria:** Script can read Config, load KB JSON, and write to logs. ✅
+
+**Status:** ✅ **COMPLETE** - See [PHASE1_COMPLETE.md](docs/PHASE1_COMPLETE.md)
 
 ---
 
-### Phase 2 — Fetch & Cache (Skeleton Run)
+### Phase 2 — Fetch & Cache (Skeleton Run) ✅ COMPLETE
 
 * Time-driven trigger to fetch **unread** threads in window.
 * **CacheService** check & set (`processed:threadId/messageId`).
 * Minimal logging to `Runs_Log` and `Messages_Log`.
 
-**Exit criteria:** Messages flow through fetch → cache guard → log without reprocessing.
+**Exit criteria:** Messages flow through fetch → cache guard → log without reprocessing. ✅
+
+**Status:** ✅ **COMPLETE** - See [PHASE2_COMPLETE.md](docs/PHASE2_COMPLETE.md)
+
+**Quick Start:** See [PHASE2_QUICKSTART.md](docs/PHASE2_QUICKSTART.md)
 
 ---
 
