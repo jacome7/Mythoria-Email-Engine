@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# TypeScript compiled output
+dist/
+*.js.map
+src/**/*.js
+
+# Clasp
+.clasp.json
+.claspignore
+
+# Google Apps Script
+.DS_Store
+*.log
+
+# IDE
+.vscode/settings.json.bak
+.idea/
+
+# OS
+Thumbs.db
+desktop.ini
+
+# Environment variables
+.env
+.env.local
+
+# Test coverage
+coverage/

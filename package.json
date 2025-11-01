@@ -1,0 +1,25 @@
+{
+  "name": "mythoria-email-engine",
+  "version": "1.0.0",
+  "description": "Google Apps Script engine for triaging emails, detecting bounces, and creating tickets",
+  "main": "src/Code.js",
+  "scripts": {
+    "push": "clasp push",
+    "pull": "clasp pull",
+    "open": "clasp open",
+    "login": "clasp login",
+    "status": "clasp status",
+    "deploy": "clasp deploy"
+  },
+  "keywords": [
+    "google-apps-script",
+    "gmail",
+    "email-triage",
+    "mythoria"
+  ],
+  "author": "Rodrigo Jácome - rodrigo.jacome@mythoria.pt",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/google-apps-script": "^1.0.83"
+  }
+}

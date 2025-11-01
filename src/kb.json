@@ -1,0 +1,157 @@
+{
+  "version": "1.0",
+  "description": "Mythoria Email Engine Knowledge Base - Rules for email triage",
+  
+  "denylist": [
+    {
+      "scope": "from_domain",
+      "pattern": "noreply\\.example\\.com",
+      "flags": "i",
+      "action": "skip",
+      "notes": "System notifications - ignore"
+    },
+    {
+      "scope": "from_local",
+      "pattern": "^(no-reply|noreply|donotreply)$",
+      "flags": "i",
+      "action": "skip",
+      "notes": "Automated no-reply addresses"
+    }
+  ],
+  
+  "rules": [
+    {
+      "id": "bounce_detection",
+      "match": [
+        {
+          "scope": "subject",
+          "pattern": "(undeliverable|delivery status notification|returned mail|mail delivery failed)",
+          "flags": "i"
+        },
+        {
+          "scope": "from_local",
+          "pattern": "^(mailer-daemon|postmaster)",
+          "flags": "i"
+        }
+      ],
+      "action": {
+        "type": "bounce"
+      },
+      "notes": "DSN detection - delivery failure notifications"
+    },
+    {
+      "id": "billing_priority",
+      "match": [
+        {
+          "scope": "body",
+          "pattern": "(billing|invoice|payment|refund|charge|subscription)",
+          "flags": "i"
+        }
+      ],
+      "action": {
+        "type": "ticket",
+        "priority": "P2",
+        "category": "billing",
+        "reply_hint": "Check invoice status and payment history"
+      },
+      "notes": "Billing-related inquiries"
+    },
+    {
+      "id": "urgent_support",
+      "match": [
+        {
+          "scope": "subject",
+          "pattern": "(urgent|emergency|critical|down|outage)",
+          "flags": "i"
+        }
+      ],
+      "action": {
+        "type": "ticket",
+        "priority": "P0",
+        "category": "support",
+        "reply_hint": "Escalate to on-call engineer"
+      },
+      "notes": "Urgent/emergency support requests"
+    },
+    {
+      "id": "general_support",
+      "match": [
+        {
+          "scope": "subject",
+          "pattern": "(help|support|question|issue|problem)",
+          "flags": "i"
+        }
+      ],
+      "action": {
+        "type": "ticket",
+        "priority": "P3",
+        "category": "support",
+        "reply_hint": "Standard support inquiry"
+      },
+      "notes": "General support questions"
+    },
+    {
+      "id": "sales_inquiry",
+      "match": [
+        {
+          "scope": "body",
+          "pattern": "(pricing|quote|demo|trial|purchase|buy)",
+          "flags": "i"
+        }
+      ],
+      "action": {
+        "type": "ticket",
+        "priority": "P2",
+        "category": "sales",
+        "reply_hint": "Route to sales team"
+      },
+      "notes": "Sales and pricing inquiries"
+    },
+    {
+      "id": "legal_compliance",
+      "match": [
+        {
+          "scope": "subject",
+          "pattern": "(gdpr|privacy|legal|compliance|data request|subpoena)",
+          "flags": "i"
+        }
+      ],
+      "action": {
+        "type": "ticket",
+        "priority": "P1",
+        "category": "legal",
+        "reply_hint": "Forward to legal team immediately"
+      },
+      "notes": "Legal and compliance matters"
+    },
+    {
+      "id": "abuse_report",
+      "match": [
+        {
+          "scope": "subject",
+          "pattern": "(abuse|spam|phishing|fraud|violation)",
+          "flags": "i"
+        }
+      ],
+      "action": {
+        "type": "ticket",
+        "priority": "P1",
+        "category": "abuse",
+        "reply_hint": "Review for TOS violation"
+      },
+      "notes": "Abuse and security reports"
+    }
+  ],
+  
+  "allowlist": [
+    {
+      "scope": "from_domain",
+      "pattern": "trustedpartner\\.com",
+      "flags": "i",
+      "action": "ticket",
+      "priority": "P2",
+      "category": "partner",
+      "notes": "Always create ticket for trusted partners"
+    }
+  ]
+}
