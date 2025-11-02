@@ -21,23 +21,46 @@
   
   "rules": [
     {
-      "id": "bounce_detection",
+      "id": "bounce_detection_comprehensive",
       "match": [
         {
-          "scope": "subject",
-          "pattern": "(undeliverable|delivery status notification|returned mail|mail delivery failed)",
-          "flags": "i"
-        },
-        {
           "scope": "from_local",
-          "pattern": "^(mailer-daemon|postmaster)",
+          "pattern": "^(mailer-daemon|postmaster|mail delivery subsystem|mail delivery system)",
           "flags": "i"
         }
       ],
       "action": {
         "type": "bounce"
       },
-      "notes": "DSN detection - delivery failure notifications"
+      "notes": "RFC 3464 DSN - Sender-based detection (primary)"
+    },
+    {
+      "id": "bounce_detection_subject",
+      "match": [
+        {
+          "scope": "subject",
+          "pattern": "(delivery status notification|undeliverable|undelivered mail|mail delivery failed|returned mail|failure notice|delivery failure|permanent error|could not deliver|address not found)",
+          "flags": "i"
+        }
+      ],
+      "action": {
+        "type": "bounce"
+      },
+      "notes": "DSN Subject line patterns (secondary)"
+    },
+    {
+      "id": "bounce_detection_smtp_codes",
+      "match": [
+        {
+          "scope": "subject",
+          "pattern": "\\b[245]\\.\\d+\\.\\d+\\b",
+          "flags": "i"
+        }
+      ],
+      "action": {
+        "type": "bounce"
+      },
+      "notes": "SMTP status codes in subject (tertiary)"
     },
     {
       "id": "billing_priority",

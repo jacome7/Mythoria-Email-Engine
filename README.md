@@ -1,7 +1,7 @@
 # Mythoria Email Engine (GAS) — README
 
 > **Goal**
-> Ship a lean Google Apps Script (GAS) engine that: (1) triages unread inbox messages, (2) detects and marks bounces, (3) creates Tickets in `mythoria_admin` with concise summaries, and (4) prepares a Gmail draft reply.
+> Ship a lean Google Apps Script (GAS) engine that: (1) triages unread inbox messages, (2) detects and marks bounces, (3) creates Tickets in `mythoria_admin` with concise summaries, (4) prepares a Gmail draft reply, and (5) ingests DMARC aggregate reports for daily email health monitoring.
 > **Keep it simple:** Knowledge Base in **JSON**, idempotency via **CacheService**, OpenAI **Responses API** with **structured outputs**, and **GPT-5-mini** for low-cost classification.
 
 ---
@@ -16,6 +16,7 @@
   * Escalate to a larger model **only if** a good **summary + reply** is needed.
 * Detects **Delivery Status Notifications** (hard/soft bounces), updates Sheets, and calls the **Mythoria Bounce API**.
 * Creates/updates a **Ticket** in `mythoria_admin` (idempotent), and saves a **Gmail draft** with a suggested reply.
+* **NEW:** Ingests **DMARC aggregate (RUA) reports** from labeled messages, parses XML, calculates health metrics, and updates a daily summary sheet.
 * Persists telemetry in a single **Google Sheet** (the Apps Script is bound to this Sheet).
 
 ---
@@ -58,6 +59,7 @@ flowchart LR
 * **Messages_Log**: one row per processed message (metadata, classification, actions taken).
 * **Bounces**: DSN details (recipient, status code 4.x.x/5.x.x, reason).
 * **Tickets**: ticket id per Gmail thread (idempotency record).
+* **DMARC_Health**: daily aggregate metrics per domain (pass rates, health status).
 * **Errors**: timestamp, context, message.
 
 > The **Knowledge Base is not in Sheets.** It lives in **`kb.json`** (see below).
@@ -253,13 +255,31 @@ All LLM calls return **strict JSON** (no prose) that conforms to a small **schem
 
 ---
 
-### Phase 3 — Bounce Handling
+### Phase 3 — Bounce Handling ✅ COMPLETE
 
 * DSN detection (subjects/senders + delivery-status part).
 * Classify **hard (5.x.x)** vs **soft (4.x.x)**; log to **Bounces**.
-* Call **Bounce API**; label `Mythoria/Bounce`; mark read.
+* Call **Bounce API**; label `Mythoria/Bounce`; mark read; archive (if API succeeds).
 
-**Exit criteria:** Known DSNs are correctly flagged, logged, labeled, and posted.
+**Exit criteria:** Known DSNs are correctly flagged, logged, labeled, and posted. ✅
+
+**Status:** ✅ **COMPLETE** - See [PHASE3_COMPLETE.md](docs/PHASE3_COMPLETE.md)
+
+---
+
+### Phase 3.5 — DMARC Health Ingest ✅ COMPLETE
+
+* Parse DMARC aggregate (RUA) reports from labeled Gmail messages.
+* Extract XML (supports `.xml`, `.xml.gz`, `.zip` attachments).
+* Calculate daily metrics: DMARC pass rate, SPF/DKIM alignment, quarantine/reject counts.
+* Update **DMARC_Health** sheet with health status (OK/WATCH/ACTION).
+* Delete processed messages automatically.
+
+**Exit criteria:** Daily DMARC health rows appear; health status accurate. ✅
+
+**Status:** ✅ **COMPLETE** - See [DMARC_IMPLEMENTATION.md](docs/DMARC_IMPLEMENTATION.md)
+
+**Quick Start:** See [DMARC_QUICKSTART.md](docs/DMARC_QUICKSTART.md)
 
 ---
 
