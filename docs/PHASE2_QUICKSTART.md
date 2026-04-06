@@ -1,3 +1,5 @@
+> Legacy note: this phase document is a historical snapshot. Use `README.md`, `docs/RUNBOOK.md`, and `docs/SETUP.md` for current instructions.
+
 # Phase 2 - Quick Start Guide
 
 ## 🚀 Get Started in 5 Minutes
@@ -148,3 +150,4 @@ Phase 3 will add:
 - ✅ Auto-labeling
 
 **Current Phase 2 Status:** ✅ COMPLETE
+

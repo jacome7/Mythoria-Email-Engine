@@ -5,7 +5,6 @@ package-lock.json
 # TypeScript compiled output
 dist/
 *.js.map
-src/**/*.js
 
 # Clasp
 .clasp.json

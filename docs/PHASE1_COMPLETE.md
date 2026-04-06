@@ -1,3 +1,5 @@
+> Legacy note: this phase document is a historical snapshot. Use `README.md`, `docs/RUNBOOK.md`, and `docs/SETUP.md` for current instructions.
+
 # 🎉 Phase 1 Implementation - COMPLETE!
 
 ## ✅ What Was Accomplished
@@ -356,3 +358,4 @@ You now have a fully functional foundation for the Mythoria Email Engine:
 Generated: November 1, 2025
 Version: 1.0.0
 Status: Phase 1 Complete ✓
+

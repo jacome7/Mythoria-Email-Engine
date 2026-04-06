@@ -4,7 +4,8 @@
   "description": "Google Apps Script engine for triaging emails, detecting bounces, and creating tickets",
   "main": "src/Code.js",
   "scripts": {
-    "push": "clasp push",
+    "sync:kb": "node scripts/sync-kb.cjs",
+    "push": "npm run sync:kb && clasp push",
     "pull": "clasp pull",
     "open": "clasp open",
     "login": "clasp login",

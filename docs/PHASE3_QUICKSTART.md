@@ -1,3 +1,5 @@
+> Legacy note: this phase document is a historical snapshot. Use `README.md`, `docs/RUNBOOK.md`, and `docs/SETUP.md` for current instructions.
+
 # Phase 3 Quick Start Guide
 
 ## 🎉 Phase 3 is Complete!
@@ -216,3 +218,4 @@ For complete details, see:
 **Phase 3 is production-ready! 🚀**
 
 Your engine now automatically handles bounces while you focus on Phase 4 development.
+

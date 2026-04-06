@@ -1,3 +1,5 @@
+> Legacy note: this phase document is a historical snapshot. Use `README.md`, `docs/RUNBOOK.md`, and `docs/SETUP.md` for current instructions.
+
 # Phase 2 Implementation Summary
 
 ## ✅ PHASE 2 COMPLETE!
@@ -341,3 +343,4 @@ clearProcessedCache()
 ---
 
 **🎊 PHASE 2 COMPLETE - READY FOR PHASE 3! 🎊**
+

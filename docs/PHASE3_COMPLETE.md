@@ -1,3 +1,5 @@
+> Legacy note: this phase document is a historical snapshot. Use `README.md`, `docs/RUNBOOK.md`, and `docs/SETUP.md` for current instructions.
+
 # 🎉 Phase 3 Implementation - COMPLETE!
 
 ## ✅ What Was Accomplished
@@ -451,3 +453,4 @@ The Mythoria Email Engine now automatically:
 7. Handles errors gracefully (no archive on API failure)
 
 **Ready to move to Phase 4!** 🚀
+
